@@ -12,7 +12,7 @@ function Sidebar() {
     bio: "",
     company: "",
     location: "",
-    website: "",
+    blog: "",
     twitter_username: "",
   });
 
@@ -21,6 +21,7 @@ function Sidebar() {
       const data = await axios.get(`https://api.github.com/users/Praneshchaa`);
       console.log(data);
       setUserInfo([data.data]);
+      setFormData(data.data);
     };
     fetchData();
   }, [setUserInfo]);
@@ -40,14 +41,17 @@ function Sidebar() {
         bio: formData.bio,
         company: formData.company,
         location: formData.location,
-        website: formData.website,
+        blog: formData.blog,
         twitter_username: formData.twitter_username,
       },
       headers: {
-        Authorization: "Bearer " + "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",
+        Authorization: "Bearer " + "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",
       },
     }).then((res) => {
-      setNewUserInfo(res.data);
+      setUserInfo([res.data]);
+      //setFormData(res.data);
+      setEditOpen(false);
+
       console.log(newUserInfo, "userInfo");
     });
   };
@@ -73,8 +77,8 @@ function Sidebar() {
               <p>{info.location}</p>
             </div>
 
-            <div className="user-website">
-              <p>{info.website}</p>
+            <div className="user-blog">
+              <p>{info.blog}</p>
             </div>
 
             <div className="user-location">
@@ -91,6 +95,7 @@ function Sidebar() {
                       name="name"
                       id="name"
                       placeholder="name"
+                      defaultValue={info.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
@@ -102,6 +107,7 @@ function Sidebar() {
                       name="bio"
                       id="bio"
                       placeholder="bio"
+                      defaultValue={info.bio}
                       onChange={(e) =>
                         setFormData({ ...formData, bio: e.target.value })
                       }
@@ -113,6 +119,7 @@ function Sidebar() {
                       name="company"
                       id="company"
                       placeholder="company"
+                      defaultValue={info.company}
                       onChange={(e) =>
                         setFormData({ ...formData, company: e.target.value })
                       }
@@ -124,6 +131,7 @@ function Sidebar() {
                       name="location"
                       id="location"
                       placeholder="location"
+                      defaultValue={info.location}
                       onChange={(e) =>
                         setFormData({ ...formData, location: e.target.value })
                       }
@@ -133,11 +141,12 @@ function Sidebar() {
                   <div>
                     <input
                       type="text"
-                      name="website"
-                      id="website"
+                      name="blog"
+                      id="blog"
                       placeholder="website"
+                      defaultValue={info.blog}
                       onChange={(e) =>
-                        setFormData({ ...formData, website: e.target.value })
+                        setFormData({ ...formData, blog: e.target.value })
                       }
                     />
                   </div>
@@ -147,6 +156,7 @@ function Sidebar() {
                       name="twitterUsername"
                       id="twitterUsername"
                       placeholder="twitterUsername"
+                      defaultValue={info.twitter_username}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -160,6 +170,10 @@ function Sidebar() {
               ) : (
                 ""
               )}
+            </div>
+            <div className="follower-info">
+              <p className="followers">{info.followers} followers</p>
+              <p className="following">{info.following} following</p>
             </div>
           </div>
         </>
