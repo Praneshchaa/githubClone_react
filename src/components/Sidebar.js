@@ -1,6 +1,11 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import logo from "../assets/images/user-group-solid.svg";
+import logo2 from "../assets/images/building-solid.svg";
+import logo4 from "../assets/images/location-dot-solid.svg";
+import logo5 from "../assets/images/paperclip-solid.svg";
+import logo6 from "../assets/images/twitter-brands.svg";
 
 function Sidebar() {
   const [userInfo, setUserInfo] = useState([]);
@@ -63,6 +68,7 @@ function Sidebar() {
           <div className="image">
             <img src={info.avatar_url} alt="pranesh" />
           </div>
+
           <div className="user-description">
             <div className="user-name">
               <p>{info.name}</p>
@@ -70,27 +76,41 @@ function Sidebar() {
             <div className="user-username">
               <p>{info.login}</p>
             </div>
-            <div className="user-company">
-              <p>{info.company}</p>
-            </div>
-            <div className="user-location">
-              <p>{info.location}</p>
-            </div>
 
-            <div className="user-blog">
-              <p>{info.blog}</p>
-            </div>
+            {/* <div className="user-slug"></div> */}
+            <button onClick={changeEditState} className="EditButton">
+              Edit Profile
+            </button>
+            <div className="side-info">
+              <div className="follower-info">
+                <img className="logo" src={logo} alt="logo"></img>
+                <p className="followers">{info.followers} Followers</p> .
+                <p className="following">{info.following} Following</p>
+              </div>
+              <div className="user-company">
+                <img className="logo" src={logo2} alt="logo"></img>
+                <p>{info.company}</p>
+              </div>
+              <div className="user-location">
+                <img className="logo" src={logo4} alt="logo"></img>
+                <p>{info.location}</p>
+              </div>
 
-            <div className="user-location">
-              <p>{info.twitter_username}</p>
-            </div>
-            <div className="user-slug"></div>
-            <button onClick={changeEditState}>Edit Profile</button>
-            <div>
+              <div className="user-blog">
+                <img className="logo" src={logo5} alt="logo"></img>
+                <p>{info.blog}</p>
+              </div>
+
+              <div className="user-location">
+                <img className="logo" src={logo6} alt="logo"></img>
+                <p>{info.twitter_username}</p>
+              </div>
+
               {editOpen ? (
                 <>
                   <div>
                     <input
+                      className="name-only"
                       type="text"
                       name="name"
                       id="name"
@@ -103,6 +123,7 @@ function Sidebar() {
                   </div>
                   <div>
                     <textarea
+                      className="bio-data"
                       type="text"
                       name="bio"
                       id="bio"
@@ -113,8 +134,10 @@ function Sidebar() {
                       }
                     />
                   </div>
-                  <div>
+                  <div className="doUpdate">
+                    <img className="logo" src={logo2} alt="logo"></img>
                     <input
+                      className="name"
                       type="text"
                       name="company"
                       id="company"
@@ -125,8 +148,10 @@ function Sidebar() {
                       }
                     />
                   </div>
-                  <div>
+                  <div className="doUpdate">
+                    <img className="logo" src={logo4} alt="logo"></img>
                     <input
+                      className="name"
                       type="text"
                       name="location"
                       id="location"
@@ -138,8 +163,10 @@ function Sidebar() {
                     />
                   </div>
 
-                  <div>
+                  <div className="doUpdate">
+                    <img className="logo" src={logo5} alt="logo"></img>
                     <input
+                      className="name"
                       type="text"
                       name="blog"
                       id="blog"
@@ -150,8 +177,10 @@ function Sidebar() {
                       }
                     />
                   </div>
-                  <div>
+                  <div className="doUpdate">
+                    <img className="logo" src={logo6} alt="logo"></img>
                     <input
+                      className="name"
                       type="text"
                       name="twitterUsername"
                       id="twitterUsername"
@@ -165,15 +194,13 @@ function Sidebar() {
                       }
                     />
                   </div>
-                  <button onClick={() => sendEditData()}>Update</button>
+                  <button onClick={() => sendEditData()} className="update">
+                    Update
+                  </button>
                 </>
               ) : (
                 ""
               )}
-            </div>
-            <div className="follower-info">
-              <p className="followers">{info.followers} followers</p>
-              <p className="following">{info.following} following</p>
             </div>
           </div>
         </>

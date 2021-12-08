@@ -38,9 +38,9 @@ function Repositories() {
                 <div className="repo-visibility">{repo.visibility}</div>
               </div>
 
-              <div className="repo-right">
+              {/* <div className="repo-right">
                 <div className="repo-visibility">{repo.stargazers_count}</div>
-              </div>
+              </div> */}
             </div>
           </a>
         ))}

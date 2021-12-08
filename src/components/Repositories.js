@@ -180,9 +180,15 @@ function Repositories() {
   return (
     <div className="repositories-collection">
       <div className="repositories-selectors" id="test">
-        <input type="text" value={searchKeyword} onChange={handleSearch} />
+        <input
+          type="text"
+          value={searchKeyword}
+          onChange={handleSearch}
+          className="Selectors"
+          placeholder="Find a repository..."
+        />
 
-        <select onChange={handleFilterType}>
+        <select onChange={handleFilterType} className="Dropdowns">
           <option value="none">Types</option>
           <option value="forks">Forks</option>
           <option value="archived">Archived</option>
@@ -191,14 +197,14 @@ function Repositories() {
           <option value="mirrors">Mirrors</option>
         </select>
 
-        <select onChange={handleFilterLangType}>
+        <select onChange={handleFilterLangType} className="Dropdowns">
           <option value="none">Language</option>
           {langOptions.map((language) => {
             return <option value={language}>{language}</option>;
           })}
         </select>
 
-        <select onChange={handleSortCategory}>
+        <select onChange={handleSortCategory} className="Dropdowns">
           <option value="none">Sort</option>
           <option value="updated_at">Last updated</option>
           <option value="name">Name</option>
